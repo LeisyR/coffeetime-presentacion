@@ -1,0 +1,9 @@
+# Temporales de vista previa
+_c*.html
+_preview.html
+_p[0-9]*.html
+
+# Sistema
+Thumbs.db
+desktop.ini
+.DS_Store

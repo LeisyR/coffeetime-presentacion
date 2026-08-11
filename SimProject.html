@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SimProject · Simuladores de Negocios</title>
+<style>
+  :root{
+    --blue:#1F4E79; --accent:#2E75B6; --light:#E8F0FE; --green:#2E7D32;
+    --light-green:#E8F5E9; --gray:#666; --dark:#222; --soft:#9DC3E6;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{font-family:Arial,Helvetica,sans-serif;background:#0d1b2a;color:var(--dark);overflow:hidden}
+
+  /* Contenedor de la diapositiva activa */
+  .deck{position:relative;width:100vw;height:100vh}
+  .slide{
+    position:absolute;inset:0;display:none;flex-direction:column;
+    padding:6vh 7vw 9vh;background:#fff;overflow:auto;
+    animation:fade .45s ease;
+  }
+  .slide.active{display:flex}
+  @keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .slide[data-bg="dark"]{background:linear-gradient(135deg,#1F4E79 0%,#163a5c 100%);color:#fff}
+  .slide::before{content:"";position:absolute;top:0;left:0;right:0;height:8px;background:var(--accent)}
+
+  .kicker{color:var(--accent);font-weight:bold;letter-spacing:2px;font-size:clamp(11px,1.3vw,15px);text-transform:uppercase;margin-bottom:.6em}
+  .kicker.light{color:var(--soft)}
+  h2{color:var(--blue);font-size:clamp(24px,3.4vw,42px);line-height:1.12;margin-bottom:.7em;border-bottom:3px solid #ddd;padding-bottom:.35em}
+  .slide[data-bg="dark"] h2{color:#fff;border:none}
+  p,li{font-size:clamp(15px,1.55vw,21px);line-height:1.5}
+
+  /* Portada */
+  .cover{justify-content:center}
+  .cover-inner{max-width:1000px}
+  .cover-title{font-size:clamp(46px,8vw,96px);font-weight:800;line-height:1;margin:.15em 0 .25em}
+  .cover-tagline{font-size:clamp(20px,2.6vw,32px);font-style:italic;color:#D6E4F0;margin-bottom:.8em}
+  .cover-sub{font-size:clamp(14px,1.6vw,20px);color:var(--soft);margin-bottom:2.4em}
+  .cover-foot{font-size:clamp(12px,1.3vw,16px);color:var(--soft)}
+
+  /* Dos columnas */
+  .two-col{display:grid;grid-template-columns:1.6fr 1fr;gap:3vw;align-items:start}
+  .two-col.lists{grid-template-columns:1fr 1fr}
+  .what p{margin-bottom:1em;color:var(--dark)}
+  .card-proof{background:var(--light);border:1px solid var(--accent);border-radius:12px;padding:1.4em 1.5em}
+  .card-label{color:var(--accent);font-weight:bold;letter-spacing:1.5px;font-size:13px;margin-bottom:.9em}
+  .card-label.green{color:var(--green)}
+  ul.proof{list-style:none}
+  ul.proof li{color:var(--blue);font-weight:600;padding:.4em 0 .4em 1.4em;position:relative;border-bottom:1px dashed #c5d6ee}
+  ul.proof li:last-child{border:none}
+  ul.proof li::before{content:"◆";position:absolute;left:0;color:var(--accent)}
+
+  /* Tarjetas de valor */
+  .value-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6vw;flex:1}
+  .value-card{border:1px solid #ddd;border-radius:12px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 4px 18px rgba(0,0,0,.06)}
+  .value-head{background:var(--accent);color:#fff;font-weight:bold;font-size:clamp(16px,1.9vw,23px);padding:.8em 1em}
+  .value-body{padding:1em 1.1em;color:var(--dark)}
+
+  /* Listas grandes */
+  ul.big-list{list-style:none}
+  ul.big-list li{padding:.55em 0 .55em 1.7em;position:relative;border-bottom:1px solid #eee}
+  ul.big-list li::before{content:"▸";position:absolute;left:.2em;color:var(--accent);font-weight:bold;font-size:1.4em;line-height:1}
+
+  /* Chips */
+  .lead{font-weight:bold;color:var(--accent);margin-bottom:.8em}
+  .chips{display:flex;flex-wrap:wrap;gap:.7em;margin-bottom:2em}
+  .chip{background:var(--light);border:1px solid var(--accent);color:var(--blue);border-radius:30px;padding:.5em 1.1em;font-size:clamp(13px,1.4vw,18px);font-weight:600}
+  .delivery{background:var(--light-green);border:1px solid var(--green);border-radius:12px;padding:1.2em 1.5em;margin-top:auto}
+  .delivery p{color:var(--dark)}
+
+  /* Cierre */
+  .closing{justify-content:center}
+  .closing-title{font-size:clamp(28px,4.5vw,54px);max-width:1000px;line-height:1.12;margin-bottom:.7em}
+  ul.next{list-style:none;margin-bottom:2em}
+  ul.next li{color:#D6E4F0;padding:.4em 0 .4em 1.5em;position:relative}
+  ul.next li::before{content:"→";position:absolute;left:0;color:var(--soft)}
+  .contact{border-top:1px solid var(--accent);padding-top:1.2em;color:#fff;font-size:clamp(14px,1.5vw,19px)}
+  .contact a{color:var(--soft)}
+
+  /* Barra inferior fija: progreso + controles */
+  .bar{position:fixed;left:0;right:0;bottom:0;height:48px;display:flex;align-items:center;
+       gap:14px;padding:0 18px;background:rgba(255,255,255,.92);backdrop-filter:blur(6px);
+       border-top:1px solid #e2e2e2;z-index:50}
+  .slide[data-bg="dark"] ~ .bar{}
+  .brand{font-size:12px;color:var(--gray);font-weight:600;white-space:nowrap}
+  .progress{flex:1;height:6px;background:#e2e8f0;border-radius:4px;overflow:hidden}
+  .progress > i{display:block;height:100%;width:0;background:var(--accent);transition:width .35s ease}
+  .nav{display:flex;align-items:center;gap:8px}
+  .nav button{border:1px solid #cbd5e1;background:#fff;color:var(--blue);width:34px;height:34px;border-radius:8px;font-size:16px;cursor:pointer}
+  .nav button:hover{background:var(--light)}
+  .counter{font-size:13px;color:var(--gray);min-width:54px;text-align:center}
+
+  /* Vista de cuadrícula (overview) */
+  .grid-view{position:fixed;inset:0;background:#0d1b2a;z-index:80;display:none;
+             grid-template-columns:repeat(4,1fr);gap:14px;padding:24px;overflow:auto;align-content:start}
+  .grid-view.show{display:grid}
+  .thumb{background:#fff;border-radius:8px;aspect-ratio:16/9;cursor:pointer;overflow:hidden;
+         border:3px solid transparent;display:flex;flex-direction:column;justify-content:center;
+         padding:12px;font-size:11px;color:var(--blue);position:relative;transition:transform .15s}
+  .thumb:hover{transform:scale(1.03);border-color:var(--accent)}
+  .thumb b{font-size:13px;display:block;margin-bottom:4px}
+  .thumb .n{position:absolute;top:6px;right:8px;color:var(--gray);font-size:10px}
+
+  .hint{position:fixed;top:14px;right:16px;z-index:60;font-size:11px;color:#fff;
+        background:rgba(0,0,0,.35);padding:6px 11px;border-radius:20px;opacity:.85}
+  @media(max-width:760px){
+    .two-col,.two-col.lists,.value-grid{grid-template-columns:1fr}
+    .slide{padding:7vh 6vw 10vh}
+    .grid-view{grid-template-columns:repeat(2,1fr)}
+  }
+</style>
+</head>
+<body>
+  <div class="hint">← → navega · F pantalla completa · G cuadrícula</div>
+  <div class="deck" id="deck">
+
+  <!-- 1 · PORTADA -->
+  <section class="slide cover" data-bg="dark">
+    <div class="cover-inner">
+      <div class="kicker light">SIMULADORES DE NEGOCIOS</div>
+      <h1 class="cover-title">SimProject</h1>
+      <p class="cover-tagline">Sus estudiantes dirigen un proyecto real de 11 semanas y un equipo de 10 personas.</p>
+      <p class="cover-sub">Gestión de proyectos tradicional  ·  Premiado por el PMI  ·  Preparación PMP / CAPM</p>
+      <p class="cover-foot">Presentación comercial para instituciones de educación superior · Junio 2026</p>
+    </div>
+  </section>
+
+  <!-- 2 · QUÉ ES -->
+  <section class="slide">
+    <div class="kicker">Visión general</div>
+    <h2>¿Qué es SimProject?</h2>
+    <div class="two-col">
+      <div class="what"><p>SimProject es una simulación galardonada con el premio del Project Management Institute (PMI). Sus estudiantes asumen el rol de gerente de proyecto y planifican y ejecutan un proyecto completo de 11 semanas, gestionando alcance, cronograma, costo, calidad y —lo más difícil— el desempeño de un equipo de 10 personas con personalidades distintas.</p><p>Lleva la gestión de proyectos de la teoría del libro a una experiencia vivencial con consecuencias reales.</p></div>
+      <aside class="card-proof">
+        <div class="card-label">EN POCAS PALABRAS</div>
+        <ul class="proof"><li>Ganador del premio PMI a la innovación educativa</li><li>Proyecto completo de 11 semanas</li><li>Equipo de 10 miembros virtuales</li><li>Herramientas reales: Charter, WBS, Gantt, red</li><li>3 ejecuciones por licencia para practicar</li><li>Ideal para preparar PMP / CAPM</li></ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 3 · PROPUESTA DE VALOR -->
+  <section class="slide">
+    <div class="kicker">Propuesta de valor</div>
+    <h2>Por qué SimProject forma mejores gerentes</h2>
+    <div class="value-grid">
+
+      <div class="value-card">
+        <div class="value-head">Del libro a la práctica</div>
+        <div class="value-body">El estudiante no memoriza procesos del PMI: los aplica. Elabora el Charter, la WBS y el Gantt, y luego los defiende ante imprevistos reales. La teoría cobra sentido.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-head">La dimensión humana</div>
+        <div class="value-body">Stakeholders que presionan y un equipo con distintas habilidades y personalidades. Aprenden a liderar personas, no solo a llenar cronogramas.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-head">Practicar mejora</div>
+        <div class="value-body">Cada licencia incluye 3 ejecuciones completas. El estudiante repite, corrige errores y mejora su puntuación: el aprendizaje por iteración que el aula tradicional no permite.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · LA EXPERIENCIA -->
+  <section class="slide">
+    <div class="kicker">La experiencia</div>
+    <h2>El ciclo de vida completo de un proyecto</h2>
+    <ul class="big-list"><li>PREPARACIÓN (30-45 min): estudia las políticas de la empresa, la información del proyecto y los recursos disponibles.</li><li>PLANIFICACIÓN (~1 hora): elabora el Project Charter, define la WBS, crea el diagrama de red y el cronograma Gantt.</li><li>EJECUCIÓN (1-3 horas): decide semana a semana sobre asignación de recursos, comunicación con stakeholders, conflictos y control de calidad.</li><li>Retroalimentación inmediata: cada decisión impacta visiblemente en alcance, cronograma, presupuesto y moral del equipo.</li><li>Puntuación de desempeño al final de cada ejecución, con métricas de eficiencia y efectividad.</li><li>El proyecto simulado «Alliance Prototype» tiene 7 tareas interdependientes y 10 miembros de equipo virtuales.</li></ul>
+  </section>
+
+  <!-- 5 · PARA EL ESTUDIANTE -->
+  <section class="slide">
+    <div class="kicker">Para el estudiante</div>
+    <h2>Competencias que se llevan al mundo real</h2>
+    <div class="two-col lists">
+      <ul class="big-list"><li>Aplicar el ciclo de vida del proyecto: inicio, planificación, ejecución, monitoreo y cierre.</li><li>Elaborar documentos clave: Charter, WBS, diagrama de red y Gantt.</li><li>Gestionar la triple restricción: alcance, tiempo y costo.</li><li>Asignar recursos según habilidades, disponibilidad y carga.</li></ul>
+      <ul class="big-list"><li>Gestionar stakeholders y comunicarse efectivamente.</li><li>Manejar riesgos e imprevistos no planificados.</li><li>Liderazgo de equipo: motivar y resolver conflictos.</li><li>Pensar como gerente de proyecto, no solo como técnico.</li></ul>
+    </div>
+  </section>
+
+  <!-- 6 · PARA LA INSTITUCIÓN -->
+  <section class="slide">
+    <div class="kicker">Para la institución y el docente</div>
+    <h2>Control total del ritmo del curso</h2>
+    <ul class="big-list"><li>Control de avance: decida cuándo los estudiantes pueden empezar a planificar y a ejecutar.</li><li>Control semana a semana: abra cada semana del proyecto de forma progresiva.</li><li>Doble vía de evaluación: por la puntuación del simulador o por análisis cualitativo de las decisiones.</li><li>Flexible: individual o en equipos de 3, según el tamaño de su clase.</li><li>Como tarea, en clase, presencial o virtual, en una o varias sesiones.</li><li>100% en la nube, sin instalación; cada licencia dura 3 ejecuciones o 120 días.</li></ul>
+  </section>
+
+  <!-- 7 · ENCAJE ACADÉMICO -->
+  <section class="slide">
+    <div class="kicker">Encaje académico</div>
+    <h2>¿En qué programas encaja?</h2>
+    <p class="lead">Ideal para:</p>
+    <div class="chips"><span class="chip">Gestión de Proyectos</span><span class="chip">Ingeniería Industrial</span><span class="chip">Ingeniería de Sistemas</span><span class="chip">Administración (con PM)</span><span class="chip">MBA con módulo de proyectos</span><span class="chip">Preparación PMP / CAPM</span><span class="chip">Capacitación corporativa</span></div>
+    <div class="delivery">
+      <div class="card-label green">FORMATO DE IMPLEMENTACIÓN</div>
+      <p>100% en la nube, sin instalación. Individual o equipos de 3. Como tarea o en clase, presencial o virtual. Cada licencia incluye 3 ejecuciones completas (expira a las 3 ejecuciones o 120 días).</p>
+    </div>
+  </section>
+
+  <!-- 8 · CIERRE -->
+  <section class="slide closing" data-bg="dark">
+    <div class="kicker light">DEMOS EL SIGUIENTE PASO</div>
+    <h2 class="closing-title">Forme gerentes de proyecto que ya hayan dirigido uno antes de graduarse.</h2>
+    <ul class="next"><li>Solicite una demo del proyecto Alliance Prototype.</li><li>Intégrelo en su curso de gestión de proyectos o PMP.</li><li>Combínelo con SimAgile para cubrir enfoque tradicional + ágil.</li></ul>
+    <div class="contact">
+      <strong>Simuladores de Negocios · Distribuidor oficial en Colombia</strong><br>
+      <a href="mailto:fidelizacion@simuladoresdenegocios.co">fidelizacion@simuladoresdenegocios.co</a>
+    </div>
+  </section>
+  </div>
+
+  <div class="bar">
+    <span class="brand">SimProject · Simuladores de Negocios</span>
+    <div class="progress"><i id="bar"></i></div>
+    <div class="nav">
+      <button id="prev" title="Anterior">‹</button>
+      <span class="counter" id="counter">1 / 8</span>
+      <button id="next" title="Siguiente">›</button>
+      <button id="grid" title="Cuadrícula">▦</button>
+      <button id="full" title="Pantalla completa">⛶</button>
+    </div>
+  </div>
+
+  <div class="grid-view" id="gridView"></div>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  const total=slides.length;
+  let cur=0;
+  const bar=document.getElementById('bar');
+  const counter=document.getElementById('counter');
+  const gridView=document.getElementById('gridView');
+
+  function show(i){
+    cur=Math.max(0,Math.min(total-1,i));
+    slides.forEach((s,k)=>s.classList.toggle('active',k===cur));
+    bar.style.width=((cur+1)/total*100)+'%';
+    counter.textContent=(cur+1)+' / '+total;
+    location.hash=cur+1;
+  }
+  function nextS(){show(cur+1)}
+  function prevS(){show(cur-1)}
+
+  document.getElementById('next').onclick=nextS;
+  document.getElementById('prev').onclick=prevS;
+  document.getElementById('full').onclick=()=>{
+    if(!document.fullscreenElement)document.documentElement.requestFullscreen();
+    else document.exitFullscreen();
+  };
+
+  // Vista de cuadrícula
+  const titles=slides.map((s,i)=>{
+    const h=s.querySelector('h1,h2');
+    return h?h.textContent.trim():'Diapositiva '+(i+1);
+  });
+  titles.forEach((t,i)=>{
+    const d=document.createElement('div');
+    d.className='thumb';
+    d.innerHTML='<span class="n">'+(i+1)+'</span><b>'+t+'</b>';
+    d.onclick=()=>{gridView.classList.remove('show');show(i)};
+    gridView.appendChild(d);
+  });
+  function toggleGrid(){gridView.classList.toggle('show')}
+  document.getElementById('grid').onclick=toggleGrid;
+
+  // Teclado
+  document.addEventListener('keydown',e=>{
+    if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();nextS()}
+    else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();prevS()}
+    else if(e.key==='Home')show(0);
+    else if(e.key==='End')show(total-1);
+    else if(e.key.toLowerCase()==='f')document.getElementById('full').click();
+    else if(e.key.toLowerCase()==='g')toggleGrid();
+    else if(e.key==='Escape')gridView.classList.remove('show');
+  });
+
+  // Swipe táctil
+  let x0=null;
+  document.addEventListener('touchstart',e=>x0=e.touches[0].clientX,{passive:true});
+  document.addEventListener('touchend',e=>{
+    if(x0===null)return;
+    const dx=e.changedTouches[0].clientX-x0;
+    if(Math.abs(dx)>50){dx<0?nextS():prevS()}
+    x0=null;
+  },{passive:true});
+
+  // Arranque (respeta el #hash)
+  const start=parseInt(location.hash.replace('#',''))||1;
+  show(start-1);
+</script>
+</body>
+</html>
