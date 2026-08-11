@@ -3,7 +3,15 @@
 Presentación de 14 láminas del simulador **CoffeeTime** de CompanyGame, con el cuadro de mando
 como núcleo formativo.
 
-**Para verla:** abre `index.html` en cualquier navegador. No necesita servidor ni instalación.
+## Dos formas de verla
+
+- **`CoffeeTime-presentacion.html`** — **un solo archivo** con todas las imágenes incrustadas.
+  Se puede enviar por correo, copiar a un USB o abrir en cualquier equipo sin nada más. Funciona
+  sin internet. Es la versión para compartir o para proyectar.
+- **`index.html`** — la versión de trabajo. Necesita la carpeta `assets/` al lado. Es la que se
+  edita; el archivo de arriba se regenera a partir de ella.
+
+Ninguna de las dos necesita servidor ni instalación.
 
 - 📖 **[INSTRUCCIONES.md](INSTRUCCIONES.md)** — qué contiene, cómo editarla, dónde van las imágenes.
 - 🛠️ **[CLAUDE.md](CLAUDE.md)** — componentes, convenciones y decisiones de diseño.
@@ -11,11 +19,12 @@ como núcleo formativo.
 ## Estructura
 
 ```
-index.html                  Toda la presentación (HTML + CSS + JS, sin dependencias)
-assets/                     Imágenes que usa el deck
-Imagenes cuadro de mando/   Capturas originales de los 10 informes
-Imagenes decisiones/        Capturas originales de las 8 pantallas de decisión
-_respaldo/                  Versión con el módulo de análisis detallado (retirado)
+CoffeeTime-presentacion.html  Versión portátil de un solo archivo (para compartir)
+index.html                    Versión de trabajo (HTML + CSS + JS, sin dependencias)
+assets/                       Imágenes que usa index.html
+Imagenes cuadro de mando/     Capturas originales de los 10 informes
+Imagenes decisiones/          Capturas originales de las 8 pantallas de decisión
+_respaldo/                    Versión con el módulo de análisis detallado (retirado)
 ```
 
 ## Contenido
