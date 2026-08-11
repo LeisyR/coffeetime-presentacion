@@ -97,13 +97,17 @@ imagen se oculta sola sin romper la tarjeta. Nombres exactos que usa el deck:
 > informes**, no ocho: se comprobó contra el demo del simulador. Mismo criterio de formato que en
 > decisiones — marco fijo de 198 px con `object-fit:contain` para que la rejilla no se desalinee.
 
-**Decisiones (lámina 10) — ✅ ya incorporadas**
-`dec-01-prevision-ventas.png` · `dec-02-precio-segmentos.png` · `dec-03-producto.png` ·
-`dec-04-promocion-marca.png` · `dec-05-promocion-punto-venta.png` · `dec-06-canal-logistica.png` ·
-`dec-07-capacidad.png` · `dec-08-presupuesto-grabar.png`
+**Decisiones (lámina 14) — ✅ ya incorporadas**
+`dec-07-capacidad.png` (va primera) · `dec-01-prevision-ventas.png` · `dec-02-precio-segmentos.png` ·
+`dec-03-producto.png` · `dec-04-promocion-marca.png` · `dec-05-promocion-punto-venta.png` ·
+`dec-06-canal-logistica.png` · `dec-08-presupuesto-grabar.png`
+
+> El orden en pantalla es el del simulador: **decisiones estratégicas primero** (son irreversibles y
+> condicionan al resto) y **grabar al final**. Los nombres de archivo conservan la numeración con
+> que se capturaron, que ya no coincide con el orden de la lámina.
 
 > Los originales están en `Imagenes decisiones/`. En `assets/` se guardaron con nombres sin
-> acentos ni espacios (más seguros en web) y la lámina 10 se reordenó en **ocho bloques**, uno por
+> acentos ni espacios (más seguros en web) y la lámina 14 se ordenó en **ocho bloques**, uno por
 > pantalla real, en rejilla de dos columnas. Todas se muestran en un **marco fijo idéntico**
 > (`height:210px` + `object-fit:contain`), porque sus proporciones van de 0,86:1 a 2,53:1 e igualar
 > solo el ancho las dejaba unas altas y otras chatas. Con clic se abren a resolución original.

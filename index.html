@@ -438,6 +438,9 @@
            no se lea como «una más de las ocho». Es la única excepción a la regla
            de que todo se puede corregir mientras el periodo esté abierto. */
         .dec-block.is-critical { border:2px solid #C0392B; box-shadow:0 6px 26px rgba(192,57,43,0.20); }
+        /* A ancho completo: es la primera y la única irreversible, y así no deja
+           un hueco en la fila (su aviso la hace mucho más alta que su vecina). */
+        .dec-grid .dec-block.is-critical { grid-column: 1 / -1; }
         .dec-block.is-critical .dec-head { background:linear-gradient(135deg, #A02D20, #C0705F); }
         /* Franja superior a todo el ancho. Como chip dentro del .dec-head le robaba
            ancho al título; como flex-item con basis 100% se estiraba deforme. */
@@ -1630,12 +1633,12 @@
                 periodo siga abierto — <strong>salvo las decisiones estratégicas, que no tienen marcha atrás</strong>.
             </p>
             <div class="dv-items">
+                <span>🔒 Decisiones estratégicas</span>
                 <span>📈 Previsión de ventas</span>
                 <span>🏷️ Precios y segmentos</span>
                 <span>⭐ Producto</span>
                 <span>📣 Promoción</span>
                 <span>🏪 Canal y logística</span>
-                <span>🔒 Decisiones estratégicas</span>
             </div>
             <div class="dv-foot">Se decide <strong>cada periodo</strong>, y el resultado se comprueba en el bloque anterior.</div>
         </div>
@@ -1648,12 +1651,37 @@
             <div class="slide-number">10</div>
         </div>
         <div class="slide-content">
-            <p style="color:#555;line-height:1.7;">Capturas reales de la plataforma. Cada columna <strong style="color:var(--primary-dark);">«Último»</strong> muestra lo que hizo la compañía el periodo anterior y <strong style="color:var(--primary-dark);">«Nuevo»</strong> es donde el equipo decide. Haz clic en cualquier pantalla para ampliarla.</p>
+            <p style="color:#555;line-height:1.7;">Capturas reales de la plataforma. Cada columna <strong style="color:var(--primary-dark);">«Último»</strong> muestra lo que hizo la compañía el periodo anterior y <strong style="color:var(--primary-dark);">«Nuevo»</strong> es donde el equipo decide. El orden es el de la plataforma: <strong style="color:var(--primary-dark);">las estratégicas van primero</strong> porque son irreversibles y condicionan al resto, y grabar va al final. Haz clic en cualquier pantalla para ampliarla.</p>
 
             <div class="dec-grid">
-            <div class="dec-block">
+            <div class="dec-block is-critical">
+                <div class="dec-flag">⚠️ Sin marcha atrás · una vez grabada, no se puede modificar</div>
                 <div class="dec-head">
                     <div class="dec-num">1</div>
+                    <div>
+                        <h3>Decisiones estratégicas</h3>
+                        <p>Ampliación de la capacidad de fabricación — y, desde el periodo 2, la entrada a la Región Sur.</p>
+                    </div>
+                </div>
+                <div class="dec-warn">
+                    <span class="dw-icon">🔒</span>
+                    <span>
+                        <strong>Estas dos son la excepción a todo lo demás.</strong> Una vez tomadas y <strong>grabadas</strong>,
+                        <strong>no se pueden modificar</strong> — ni aunque el periodo siga abierto, ni en periodos posteriores.
+                        El resto de decisiones se corrigen cuantas veces haga falta; estas no.
+                        <span class="dw-tip"><strong>Por eso van primero:</strong> condicionan el precio, la promoción y la previsión de todo el periodo. Antes de grabar, revisen el informe de <strong>Producción</strong> para la capacidad y el de <strong>Mercado</strong> para el Sur.</span>
+                    </span>
+                </div>
+                <div class="dec-shot">
+                    <img src="assets/dec-07-capacidad.png" alt="Pantalla de ampliación de capacidad de fabricación" loading="lazy"
+                         onclick="openLightbox('assets/dec-07-capacidad.png','Decisiones estratégicas · ampliación de capacidad')">
+                    <div class="dec-cap">Se puede ampliar en 20.000, 40.000 o 60.000 unidades. <strong>Tarda un periodo completo en estar disponible</strong>, así que hay que planificarla con antelación. La propia pantalla lo advierte: <em>«una vez hayas tomado esta decisión no podrás modificarla. Medítala bien antes de ejecutarla»</em>.</div>
+                </div>
+            </div>
+
+            <div class="dec-block">
+                <div class="dec-head">
+                    <div class="dec-num">2</div>
                     <div>
                         <h3>Previsión de ventas</h3>
                         <p>Kilos que el equipo espera vender por línea. Fabricación produce exactamente esto — es la decisión que arrastra a todas las demás.</p>
@@ -1668,7 +1696,7 @@
 
             <div class="dec-block">
                 <div class="dec-head">
-                    <div class="dec-num">2</div>
+                    <div class="dec-num">3</div>
                     <div>
                         <h3>Priorización de segmentos y precios</h3>
                         <p>Reparto de 21 puntos entre las tres clases sociales, y precio de venta por región y línea de producto.</p>
@@ -1683,7 +1711,7 @@
 
             <div class="dec-block">
                 <div class="dec-head">
-                    <div class="dec-num">3</div>
+                    <div class="dec-num">4</div>
                     <div>
                         <h3>Producto</h3>
                         <p>Proceso de producción, nivel de packaging y amplitud de gama, línea por línea.</p>
@@ -1698,7 +1726,7 @@
 
             <div class="dec-block">
                 <div class="dec-head">
-                    <div class="dec-num">4</div>
+                    <div class="dec-num">5</div>
                     <div>
                         <h3>Promoción de marca</h3>
                         <p>Presupuesto de marca por mercado y reparto entre las cuatro acciones de promoción.</p>
@@ -1713,7 +1741,7 @@
 
             <div class="dec-block">
                 <div class="dec-head">
-                    <div class="dec-num">5</div>
+                    <div class="dec-num">6</div>
                     <div>
                         <h3>Promoción en punto de venta</h3>
                         <p>Reparto entre las cuatro acciones dirigidas al comprador y al distribuidor.</p>
@@ -1728,7 +1756,7 @@
 
             <div class="dec-block">
                 <div class="dec-head">
-                    <div class="dec-num">6</div>
+                    <div class="dec-num">7</div>
                     <div>
                         <h3>Canal y logística</h3>
                         <p>Modalidad logística, descuento que se cede al canal y presupuesto de promoción en punto de venta por mercado.</p>
@@ -1738,31 +1766,6 @@
                     <img src="assets/dec-06-canal-logistica.png" alt="Pantalla de canal y modalidad logística" loading="lazy"
                          onclick="openLightbox('assets/dec-06-canal-logistica.png','Modalidad logística, descuento al canal y promoción en punto de venta')">
                     <div class="dec-cap">Las tres palancas de la <strong>cobertura de distribución</strong>. El descuento al canal se mueve entre 12 y 20, y sale directo del margen.</div>
-                </div>
-            </div>
-
-            <div class="dec-block is-critical">
-                <div class="dec-flag">⚠️ Sin marcha atrás · una vez grabada, no se puede modificar</div>
-                <div class="dec-head">
-                    <div class="dec-num">7</div>
-                    <div>
-                        <h3>Decisiones estratégicas</h3>
-                        <p>Ampliación de la capacidad de fabricación — y, desde el periodo 2, la entrada a la Región Sur.</p>
-                    </div>
-                </div>
-                <div class="dec-warn">
-                    <span class="dw-icon">🔒</span>
-                    <span>
-                        <strong>Estas dos son la excepción a todo lo demás.</strong> Una vez tomadas y <strong>grabadas</strong>,
-                        <strong>no se pueden modificar</strong> — ni aunque el periodo siga abierto, ni en periodos posteriores.
-                        El resto de decisiones se corrigen cuantas veces haga falta; estas no.
-                        <span class="dw-tip">Antes de grabar: revisen el informe de <strong>Producción</strong> para la capacidad, y el de <strong>Mercado</strong> para el Sur. Y decídanlas <em>antes</em> que las demás, porque condicionan precio, promoción y previsión.</span>
-                    </span>
-                </div>
-                <div class="dec-shot">
-                    <img src="assets/dec-07-capacidad.png" alt="Pantalla de ampliación de capacidad de fabricación" loading="lazy"
-                         onclick="openLightbox('assets/dec-07-capacidad.png','Decisiones estratégicas · ampliación de capacidad')">
-                    <div class="dec-cap">Se puede ampliar en 20.000, 40.000 o 60.000 unidades. <strong>Tarda un periodo completo en estar disponible</strong>, así que hay que planificarla con antelación. La propia pantalla lo advierte: <em>«una vez hayas tomado esta decisión no podrás modificarla. Medítala bien antes de ejecutarla»</em>.</div>
                 </div>
             </div>
 
@@ -1785,7 +1788,7 @@
             <div class="note">
                 🔄 <strong>La regla general:</strong> mientras el periodo esté abierto, las decisiones se pueden modificar tantas veces como el equipo quiera — siempre volviendo a grabar. Cuando el profesor cierra el periodo y ejecuta la simulación, quedan en firme.
                 <br><br>
-                🔒 <strong>La excepción, la número 7:</strong> la <strong>ampliación de capacidad</strong> y la <strong>entrada a la Región Sur</strong> quedan en firme <strong>en cuanto se graban</strong>, sin esperar al cierre del periodo. No hay forma de deshacerlas.
+                🔒 <strong>La excepción, la primera:</strong> la <strong>ampliación de capacidad</strong> y la <strong>entrada a la Región Sur</strong> quedan en firme <strong>en cuanto se graban</strong>, sin esperar al cierre del periodo. No hay forma de deshacerlas — por eso el simulador las pone al principio.
             </div>
         </div>
     </div>
