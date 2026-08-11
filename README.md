@@ -1,6 +1,6 @@
 # ☕ CoffeeTime — Presentación interactiva
 
-Presentación de 14 láminas del simulador **CoffeeTime** de CompanyGame, con el cuadro de mando
+Presentación de 17 láminas del simulador **CoffeeTime** de CompanyGame, con el cuadro de mando
 como núcleo formativo.
 
 ## Dos formas de verla
@@ -31,20 +31,14 @@ _respaldo/                    Versión con el módulo de análisis detallado (re
 
 | # | Lámina |
 |---|--------|
-| 1 | Portada |
-| 2 | Cartelera de simuladores CompanyGame |
-| 3 | Ingreso a la plataforma |
-| 4 | ¿Qué es CoffeeTime? |
-| 5 | Cadena de valor |
-| 6 | Producción y costes |
-| 7 | Áreas de decisión |
-| 8 | Segmentos y competitividad |
-| **9** | **Cuadro de mando — método de análisis en 5 pasos + los 10 informes** |
-| 10 | Las decisiones del simulador — 8 pantallas reales |
-| 11 | Valor de la Compañía |
-| 12 | Métodos de implementación |
-| 13 | Preguntas frecuentes |
-| 14 | Cierre |
+| 1–3 | Portada · Cartelera · Ingreso a la plataforma |
+| **4** | **📖 Bloque 1 — El manual del participante** |
+| 5–9 | ¿Qué es? · Cadena de valor · Producción y costes · Áreas de decisión · Segmentos |
+| **10** | **📊 Bloque 2 — Los informes del cuadro de mando** |
+| 11–12 | Cuadro de mando (método en 5 pasos + los 10 informes) · Valor de la Compañía |
+| **13** | **🕹️ Bloque 3 — Las decisiones del simulador** |
+| 14 | Las 8 pantallas de decisión, en capturas reales |
+| 15–17 | Métodos de implementación · Preguntas frecuentes · Cierre |
 
 Las cifras corresponden al **Periodo 0** del simulador.
 

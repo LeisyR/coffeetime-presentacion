@@ -1,6 +1,6 @@
 # ☕ CoffeeTime — Presentación interactiva
 
-Presentación de **14 láminas** del simulador **CoffeeTime** de CompanyGame, generada a partir de la
+Presentación de **17 láminas** del simulador **CoffeeTime** de CompanyGame, generada a partir de la
 plantilla maestra (`../plantilla-presentacion/`) y personalizada con la identidad de café y el logo
 de **Simuladores de Negocios Colombia**.
 
@@ -23,22 +23,38 @@ fuente del sistema.
 
 ## Qué contiene
 
-| # | Lámina | Tipo |
-|---|--------|------|
-| 1 | Portada + contexto | CoffeeTime |
-| 2 | Cartelera de simuladores CompanyGame | fija |
-| 3 | Ingreso a la plataforma | fija |
-| 4 | ¿Qué es CoffeeTime? — 2 líneas, 3 segmentos, 2 regiones, 1 planta | CoffeeTime |
-| 5 | Cadena de valor — del grano al consumidor | CoffeeTime |
-| 6 | Producción y costes — coste unitario, fábrica y palancas | CoffeeTime |
-| 7 | Áreas de decisión — 4 menús + expansión a la Región Sur | CoffeeTime |
-| 8 | Segmentos y competitividad + reparto del presupuesto de promoción | CoffeeTime |
-| **9** | **Cuadro de mando — método de análisis en 5 pasos + los 10 informes con captura** | **núcleo formativo** |
-| 10 | Las decisiones del simulador — 8 pantallas reales | CoffeeTime |
-| 11 | Valor de la Compañía — factores y Periodo 0 en puntos | CoffeeTime |
-| 12 | Métodos de implementación (deductivo, inductivo, mixto, alternos) | fija |
-| 13 | Preguntas frecuentes | semi-fija |
-| 14 | Cierre y contacto del distribuidor | fija |
+| # | Lámina | Bloque |
+|---|--------|--------|
+| 1 | Portada + contexto | — |
+| 2 | Cartelera de simuladores CompanyGame | — |
+| 3 | Ingreso a la plataforma | — |
+| **4** | **Divisoria — 📖 El manual del participante** | **1** |
+| 5 | ¿Qué es CoffeeTime? | 1 |
+| 6 | Cadena de valor | 1 |
+| 7 | Producción y costes | 1 |
+| 8 | Áreas de decisión | 1 |
+| 9 | Segmentos y competitividad | 1 |
+| **10** | **Divisoria — 📊 Los informes del cuadro de mando** | **2** |
+| 11 | Cuadro de mando — método en 5 pasos + los 10 informes | 2 |
+| 12 | Valor de la Compañía | 2 |
+| **13** | **Divisoria — 🕹️ Las decisiones del simulador** | **3** |
+| 14 | Las decisiones — 8 pantallas reales | 3 |
+| 15 | Métodos de implementación | — |
+| 16 | Preguntas frecuentes | — |
+| 17 | Cierre y contacto del distribuidor | — |
+
+## Los tres bloques
+
+El recorrido está señalizado en dos niveles para que siempre se sepa en qué parte se está:
+
+1. **Tres láminas divisorias** a sangre sobre fondo café (4, 10 y 13), que rompen visualmente con
+   las láminas de contenido —blancas— y anuncian qué viene y con qué frecuencia se usa.
+2. **Una etiqueta de bloque** en la cabecera de cada lámina de contenido, inyectada por JS
+   (`injectBlockLabels`) según el índice de la lámina. Si se añade o mueve una lámina hay que
+   actualizar los rangos `desde`/`hasta` de ese script.
+
+La numeración de la esquina cuenta **solo láminas de contenido**: las divisorias no llevan número
+porque ya tienen el suyo de bloque (01, 02, 03).
 
 Las cifras corresponden al **Periodo 0** del simulador y coinciden con las del deck de PowerPoint
 `coffeetime_project/generate.js`, de donde procede todo el contenido de la lámina 9.

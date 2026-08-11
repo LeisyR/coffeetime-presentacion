@@ -513,6 +513,67 @@
         .phone-btn { background: var(--primary); color: #fff; text-align: center; padding: 13px; border-radius: 8px; font-family: 'Montserrat', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; font-weight: 700; letter-spacing: 1px; font-size: 0.85em; margin-top: 6px; }
         .phone-recover { text-align: center; font-size: 0.72em; color: var(--primary); margin-top: 18px; }
 
+        /* ===== LÁMINAS DIVISORIAS DE BLOQUE =====
+           Separan las tres partes del recorrido: leer el manual, leer los informes
+           y tomar las decisiones. Fondo café a sangre para que se distingan de un
+           vistazo de las láminas de contenido, que van sobre blanco. */
+        .divider {
+            min-height: 74vh; padding: 70px 46px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; color: #fff;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            position: relative; overflow: hidden;
+        }
+        .divider::before {
+            content: ''; position: absolute; top: -30%; right: -8%;
+            width: 460px; height: 460px; border-radius: 50%;
+            background: rgba(255,255,255,0.07);
+        }
+        .divider > * { position: relative; z-index: 1; }
+        .dv-eyebrow {
+            font-family: 'Montserrat', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; font-weight: 700; font-size: 0.82em;
+            text-transform: uppercase; letter-spacing: 4px; opacity: 0.85; margin-bottom: 18px;
+        }
+        .dv-num {
+            font-family: 'Montserrat', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; font-weight: 800; font-size: 5.2em;
+            line-height: 1; opacity: 0.26; margin-bottom: 4px;
+        }
+        .divider h2 {
+            font-family: 'Montserrat', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; font-weight: 800; font-size: 2.7em;
+            margin-bottom: 18px; text-wrap: balance;
+        }
+        .divider p {
+            max-width: 720px; font-size: 1.06em; line-height: 1.75;
+            opacity: 0.94; margin: 0 auto;
+        }
+        .divider p strong { color: #fff; }
+        .dv-items {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 34px;
+        }
+        .dv-items span {
+            background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.26);
+            backdrop-filter: blur(6px); border-radius: 30px; padding: 10px 22px;
+            font-family: 'Montserrat', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 0.86em;
+        }
+        .dv-foot {
+            margin-top: 40px; font-size: 0.88em; opacity: 0.8;
+            border-top: 1px solid rgba(255,255,255,0.24); padding-top: 18px;
+        }
+        @media (max-width: 768px) {
+            .divider h2 { font-size: 1.9em; }
+            .dv-num { font-size: 3.6em; }
+        }
+
+        /* Etiqueta de bloque en la cabecera de cada lámina de contenido.
+           Se inyecta por JS (ver injectBlockLabels) para no repetirla a mano en cada una. */
+        .block-label {
+            display: inline-block; margin-bottom: 10px;
+            background: rgba(255,255,255,0.22); border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 30px; padding: 5px 16px;
+            font-family: 'Montserrat', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; font-weight: 700; font-size: 0.62em;
+            text-transform: uppercase; letter-spacing: 1.6px;
+            position: relative; z-index: 1;
+        }
         /* ===== CLOSING ===== */
         .closing { text-align: center; padding: 70px 40px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: #fff; min-height: 85vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .closing .closing-emoji { font-size: 3.4em; margin-bottom: 16px; }
@@ -843,7 +904,29 @@
     </div>
 
     <!-- ===================== SLIDE 4: ¿QUÉ ES? [VARIABLE] ===================== -->
-    <div class="slide" id="slide4">
+    <!-- ===================== DIVISORIA · BLOQUE 1: EL MANUAL ===================== -->
+    <div class="slide is-divider" id="slide4">
+        <div class="divider">
+            <div class="dv-eyebrow">Primera parte</div>
+            <div class="dv-num">01</div>
+            <h2>📖 El manual del participante</h2>
+            <p>
+                Antes de decidir nada hay que entender el negocio: <strong>qué empresa dirige el equipo</strong>,
+                de qué depende su coste, quién le compra y con qué criterios. Todo esto está en el manual del
+                simulador y es lo que se recorre en las cinco láminas siguientes.
+            </p>
+            <div class="dv-items">
+                <span>☕ Qué es CoffeeTime</span>
+                <span>🔗 Cadena de valor</span>
+                <span>🏭 Producción y costes</span>
+                <span>⚙️ Áreas de decisión</span>
+                <span>🎯 Segmentos y competitividad</span>
+            </div>
+            <div class="dv-foot">Se lee <strong>una vez</strong>, al empezar — y se vuelve a él cuando un resultado no se entiende.</div>
+        </div>
+    </div>
+
+    <div class="slide" id="slide5">
         <div class="slide-header">
             <h1>¿Qué es CoffeeTime?</h1>
             <h2>Cinco compañías cafeteras, el mismo punto de partida</h2>
@@ -882,7 +965,7 @@
     </div>
 
     <!-- ===================== SLIDE 5: CADENA DE VALOR [VARIABLE] ===================== -->
-    <div class="slide" id="slide5">
+    <div class="slide" id="slide6">
         <div class="slide-header">
             <h1>🔗 Cadena de Valor</h1>
             <h2>Del grano al consumidor: dónde decide el equipo en cada eslabón</h2>
@@ -927,7 +1010,7 @@
     </div>
 
     <!-- ===================== SLIDE 6: PRODUCCIÓN / INSUMOS [VARIABLE] ===================== -->
-    <div class="slide" id="slide6">
+    <div class="slide" id="slide7">
         <div class="slide-header">
             <h1>🏭 Producción y Costes</h1>
             <h2>Qué hay dentro de cada kilo de café y quién manda en la fábrica</h2>
@@ -995,7 +1078,7 @@
     </div>
 
     <!-- ===================== SLIDE 7: ÁREAS DE DECISIÓN [VARIABLE] ===================== -->
-    <div class="slide" id="slide7">
+    <div class="slide" id="slide8">
         <div class="slide-header">
             <h1>⚙️ Áreas de Decisión</h1>
             <h2>Cuatro menús, once decisiones — todas cada periodo</h2>
@@ -1071,7 +1154,7 @@
     </div>
 
     <!-- ===================== SLIDE 8: SEGMENTOS Y COMPETITIVIDAD [VARIABLE] ===================== -->
-    <div class="slide" id="slide8">
+    <div class="slide" id="slide9">
         <div class="slide-header">
             <h1>🎯 Segmentos y Competitividad</h1>
             <h2>Tres clases sociales, dos regiones y un presupuesto que repartir</h2>
@@ -1185,7 +1268,27 @@
     </div>
 
     <!-- ===================== SLIDE 9: CUADRO DE MANDO (GALERÍA) [VARIABLE] ===================== -->
-    <div class="slide" id="slide9">
+    <!-- ===================== DIVISORIA · BLOQUE 2: EL CUADRO DE MANDO ===================== -->
+    <div class="slide is-divider" id="slide10">
+        <div class="divider">
+            <div class="dv-eyebrow">Segunda parte</div>
+            <div class="dv-num">02</div>
+            <h2>📊 Los informes del cuadro de mando</h2>
+            <p>
+                Aquí <strong>no se decide todavía: se lee</strong>. Los diez informes cuentan qué pasó el periodo
+                anterior y por qué. De su lectura sale el diagnóstico, y del diagnóstico salen las decisiones.
+                Es la parte que más pesa en la formación.
+            </p>
+            <div class="dv-items">
+                <span>🔁 El método de análisis en 5 pasos</span>
+                <span>🗺️ Los 10 informes, uno a uno</span>
+                <span>🏆 El Valor de la Compañía</span>
+            </div>
+            <div class="dv-foot">Se lee <strong>cada periodo</strong>, antes de tocar una sola decisión.</div>
+        </div>
+    </div>
+
+    <div class="slide" id="slide11">
         <div class="slide-header">
             <h1>📊 Cuadro de Mando</h1>
             <h2>El método de análisis del equipo y el mapa de los diez informes</h2>
@@ -1395,11 +1498,123 @@
     </div>
 
     <!-- ===================== SLIDE 13: DECISIONES DEL SIMULADOR (CAPTURAS REALES) ===================== -->
-    <div class="slide" id="slide10">
+    <div class="slide" id="slide12">
+        <div class="slide-header">
+            <h1>🏆 Valor de la Compañía</h1>
+            <h2>El marcador del juego: cinco factores ponderados y un objetivo del +7%</h2>
+            <div class="slide-number">09</div>
+        </div>
+        <div class="slide-content">
+            <p style="color:#555;line-height:1.7;">El ranking no se decide solo por dinero. Los <strong style="color:var(--primary-dark);">resultados económicos pesan el 45%</strong>, pero el 55% restante depende de los activos que sostienen el margen futuro: producto, marca, cobertura y cuota de mercado.</p>
+
+            <div class="sec-title">🔍 Qué mira cada factor</div>
+            <div class="factor-accordion">
+                <div class="factor-item">
+                    <div class="factor-header factor-orange" onclick="toggleFactor(this)">
+                        <span>💵 Resultados económicos</span>
+                        <span><span class="factor-tag">45%</span> <span class="factor-icon">▼</span></span>
+                    </div>
+                    <div class="factor-body"><div class="factor-content">
+                        <p>Es el margen operativo sobre ingresos. En el Periodo 0 fue del <strong>29%</strong>: 473.280 sobre 1.629.028 de ingresos. Casi la mitad del marcador sale de aquí.</p>
+                        <div class="factor-consejo"><strong>Consejo:</strong> subir precio protege el margen pero castiga a los segmentos sensibles. Vender más kilos con la fábrica más ocupada baja el coste unitario y mejora el margen sin tocar el precio.</div>
+                    </div></div>
+                </div>
+
+                <div class="factor-item">
+                    <div class="factor-header factor-amber" onclick="toggleFactor(this)">
+                        <span>⭐ Valor de producto</span>
+                        <span><span class="factor-tag">15%</span> <span class="factor-icon">▼</span></span>
+                    </div>
+                    <div class="factor-body"><div class="factor-content">
+                        <p>Combina amplitud de gama, nivel de packaging y proceso de producción. En el Periodo 0 está en <strong>6,3 de 10</strong>, con las tres palancas en su nivel mínimo.</p>
+                        <div class="factor-consejo"><strong>Consejo:</strong> sube gama, packaging o proceso <em>en la línea que quieras diferenciar</em>, sabiendo de antemano cuánto encarece el kilo.</div>
+                    </div></div>
+                </div>
+
+                <div class="factor-item">
+                    <div class="factor-header factor-green" onclick="toggleFactor(this)">
+                        <span>🏆 Valor de marca</span>
+                        <span><span class="factor-tag">15%</span> <span class="factor-icon">▼</span></span>
+                    </div>
+                    <div class="factor-body"><div class="factor-content">
+                        <p>Se mide en escala de 10 a 100 y en el Periodo 0 está en <strong>40</strong> (41 convencional, 36 orgánico). Depende de la priorización de segmentos y del reparto del presupuesto de promoción de marca.</p>
+                        <div class="factor-consejo"><strong>Consejo:</strong> los tres segmentos están priorizados en 7 — priorizar a todos por igual equivale a no priorizar. Elige uno y concentra el presupuesto donde el factor marca pesa más.</div>
+                    </div></div>
+                </div>
+
+                <div class="factor-item">
+                    <div class="factor-header factor-teal" onclick="toggleFactor(this)">
+                        <span>🏪 Cobertura de distribución</span>
+                        <span><span class="factor-tag">15%</span> <span class="factor-icon">▼</span></span>
+                    </div>
+                    <div class="factor-body"><div class="factor-content">
+                        <p>Porcentaje de puntos de venta donde está tu café: <strong>26,0</strong> en el Periodo 0, frente a 23,6 el año anterior. Sube con el descuento al canal, la promoción en punto de venta y la frecuencia logística.</p>
+                        <div class="factor-consejo"><strong>Consejo:</strong> es el factor más barato de mover al principio — y sin cobertura, ni el precio ni la marca llegan a convertirse en ventas.</div>
+                    </div></div>
+                </div>
+
+                <div class="factor-item">
+                    <div class="factor-header factor-purple" onclick="toggleFactor(this)">
+                        <span>📊 Participación de mercado</span>
+                        <span><span class="factor-tag">10%</span> <span class="factor-icon">▼</span></span>
+                    </div>
+                    <div class="factor-body"><div class="factor-content">
+                        <p>La cuota sobre el total del sector. En el Periodo 0 las cinco compañías tienen exactamente el <strong>20%</strong>: el empate es el punto de partida de todos.</p>
+                        <div class="factor-consejo"><strong>Consejo:</strong> ganar cuota es un juego de suma cero contra los demás equipos. Los 720.000 consumidores de la Región Sur son, en cambio, mercado nuevo para quien entre primero.</div>
+                    </div></div>
+                </div>
+            </div>
+
+            <div class="sec-title">🎯 El Periodo 0 en puntos</div>
+            <div class="sec-sub">Así se descompusieron los 1.371 puntos de partida, incluida la tasa de ocupación de fábrica, que ajusta el resultado final.</div>
+            <table class="data-table">
+                <thead><tr><th>Componente</th><th style="text-align:center;">Puntos en el Periodo 0</th><th>Lectura</th></tr></thead>
+                <tbody>
+                    <tr><td>Resultados económicos</td><td style="text-align:center;">521</td><td>El bloque más grande, como marca su peso del 45%</td></tr>
+                    <tr><td>Valor de producto</td><td style="text-align:center;">186</td><td>Estancado: gama y packaging sin cambios</td></tr>
+                    <tr><td>Valor de marca</td><td style="text-align:center;">184</td><td>Sube por la promoción sostenida</td></tr>
+                    <tr><td>Cobertura de distribución</td><td style="text-align:center;">184</td><td>Más puntos de venta alcanzados que el año anterior</td></tr>
+                    <tr><td>Participación de mercado</td><td style="text-align:center;">176</td><td>20% para las cinco compañías</td></tr>
+                    <tr><td>Tasa de ocupación de fábrica</td><td style="text-align:center;">120</td><td><strong>El componente más bajo</strong> — la planta al 79,1%</td></tr>
+                    <tr><td><strong style="color:var(--primary-dark);">Valor de la Compañía</strong></td><td style="text-align:center;"><strong style="color:var(--primary-dark);">1.371</strong></td><td><strong>+5,5% desde 1.300 — por debajo del 7% esperado</strong></td></tr>
+                </tbody>
+            </table>
+
+            <div class="note dark">
+                📐 <strong>Este marcador es la salida, no la entrada.</strong> Cada factor se diagnostica en un informe distinto del cuadro de mando: <strong>Producción</strong> y <strong>Margen</strong> explican los resultados económicos; <strong>Producto</strong>, el valor de producto; <strong>Canal</strong>, la cobertura; <strong>Ventas</strong>, la participación de mercado; y el valor de marca aparece en <strong>Indicadores Clave</strong>. El detalle de los diez está en la lámina <strong>Cuadro de Mando</strong>.
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== SLIDE 12: MÉTODOS DE IMPLEMENTACIÓN ===================== -->
+    <!-- ===================== DIVISORIA · BLOQUE 3: LAS DECISIONES ===================== -->
+    <div class="slide is-divider" id="slide13">
+        <div class="divider">
+            <div class="dv-eyebrow">Tercera parte</div>
+            <div class="dv-num">03</div>
+            <h2>🕹️ Las decisiones del simulador</h2>
+            <p>
+                El momento de actuar. Ocho pantallas donde el equipo traduce el diagnóstico en once decisiones
+                concretas. Nada cuenta hasta pulsar <strong>Grabar</strong>, y todo se puede corregir mientras el
+                periodo siga abierto.
+            </p>
+            <div class="dv-items">
+                <span>📈 Previsión de ventas</span>
+                <span>🏷️ Precios y segmentos</span>
+                <span>⭐ Producto</span>
+                <span>📣 Promoción</span>
+                <span>🏪 Canal y logística</span>
+                <span>🔒 Decisiones estratégicas</span>
+            </div>
+            <div class="dv-foot">Se decide <strong>cada periodo</strong>, y el resultado se comprueba en el bloque anterior.</div>
+        </div>
+    </div>
+
+    <div class="slide" id="slide14">
         <div class="slide-header">
             <h1>🕹️ Las Decisiones del Simulador</h1>
             <h2>Las ocho pantallas donde el equipo introduce su estrategia cada periodo</h2>
-            <div class="slide-number">09</div>
+            <div class="slide-number">10</div>
         </div>
         <div class="slide-content">
             <p style="color:#555;line-height:1.7;">Capturas reales de la plataforma. Cada columna <strong style="color:var(--primary-dark);">«Último»</strong> muestra lo que hizo la compañía el periodo anterior y <strong style="color:var(--primary-dark);">«Nuevo»</strong> es donde el equipo decide. Haz clic en cualquier pantalla para ampliarla.</p>
@@ -1533,96 +1748,7 @@
     </div>
 
     <!-- ===================== SLIDE 11: VALOR DE LA COMPAÑÍA [VARIABLE] ===================== -->
-    <div class="slide" id="slide11">
-        <div class="slide-header">
-            <h1>🏆 Valor de la Compañía</h1>
-            <h2>El marcador del juego: cinco factores ponderados y un objetivo del +7%</h2>
-            <div class="slide-number">10</div>
-        </div>
-        <div class="slide-content">
-            <p style="color:#555;line-height:1.7;">El ranking no se decide solo por dinero. Los <strong style="color:var(--primary-dark);">resultados económicos pesan el 45%</strong>, pero el 55% restante depende de los activos que sostienen el margen futuro: producto, marca, cobertura y cuota de mercado.</p>
-
-            <div class="sec-title">🔍 Qué mira cada factor</div>
-            <div class="factor-accordion">
-                <div class="factor-item">
-                    <div class="factor-header factor-orange" onclick="toggleFactor(this)">
-                        <span>💵 Resultados económicos</span>
-                        <span><span class="factor-tag">45%</span> <span class="factor-icon">▼</span></span>
-                    </div>
-                    <div class="factor-body"><div class="factor-content">
-                        <p>Es el margen operativo sobre ingresos. En el Periodo 0 fue del <strong>29%</strong>: 473.280 sobre 1.629.028 de ingresos. Casi la mitad del marcador sale de aquí.</p>
-                        <div class="factor-consejo"><strong>Consejo:</strong> subir precio protege el margen pero castiga a los segmentos sensibles. Vender más kilos con la fábrica más ocupada baja el coste unitario y mejora el margen sin tocar el precio.</div>
-                    </div></div>
-                </div>
-
-                <div class="factor-item">
-                    <div class="factor-header factor-amber" onclick="toggleFactor(this)">
-                        <span>⭐ Valor de producto</span>
-                        <span><span class="factor-tag">15%</span> <span class="factor-icon">▼</span></span>
-                    </div>
-                    <div class="factor-body"><div class="factor-content">
-                        <p>Combina amplitud de gama, nivel de packaging y proceso de producción. En el Periodo 0 está en <strong>6,3 de 10</strong>, con las tres palancas en su nivel mínimo.</p>
-                        <div class="factor-consejo"><strong>Consejo:</strong> sube gama, packaging o proceso <em>en la línea que quieras diferenciar</em>, sabiendo de antemano cuánto encarece el kilo.</div>
-                    </div></div>
-                </div>
-
-                <div class="factor-item">
-                    <div class="factor-header factor-green" onclick="toggleFactor(this)">
-                        <span>🏆 Valor de marca</span>
-                        <span><span class="factor-tag">15%</span> <span class="factor-icon">▼</span></span>
-                    </div>
-                    <div class="factor-body"><div class="factor-content">
-                        <p>Se mide en escala de 10 a 100 y en el Periodo 0 está en <strong>40</strong> (41 convencional, 36 orgánico). Depende de la priorización de segmentos y del reparto del presupuesto de promoción de marca.</p>
-                        <div class="factor-consejo"><strong>Consejo:</strong> los tres segmentos están priorizados en 7 — priorizar a todos por igual equivale a no priorizar. Elige uno y concentra el presupuesto donde el factor marca pesa más.</div>
-                    </div></div>
-                </div>
-
-                <div class="factor-item">
-                    <div class="factor-header factor-teal" onclick="toggleFactor(this)">
-                        <span>🏪 Cobertura de distribución</span>
-                        <span><span class="factor-tag">15%</span> <span class="factor-icon">▼</span></span>
-                    </div>
-                    <div class="factor-body"><div class="factor-content">
-                        <p>Porcentaje de puntos de venta donde está tu café: <strong>26,0</strong> en el Periodo 0, frente a 23,6 el año anterior. Sube con el descuento al canal, la promoción en punto de venta y la frecuencia logística.</p>
-                        <div class="factor-consejo"><strong>Consejo:</strong> es el factor más barato de mover al principio — y sin cobertura, ni el precio ni la marca llegan a convertirse en ventas.</div>
-                    </div></div>
-                </div>
-
-                <div class="factor-item">
-                    <div class="factor-header factor-purple" onclick="toggleFactor(this)">
-                        <span>📊 Participación de mercado</span>
-                        <span><span class="factor-tag">10%</span> <span class="factor-icon">▼</span></span>
-                    </div>
-                    <div class="factor-body"><div class="factor-content">
-                        <p>La cuota sobre el total del sector. En el Periodo 0 las cinco compañías tienen exactamente el <strong>20%</strong>: el empate es el punto de partida de todos.</p>
-                        <div class="factor-consejo"><strong>Consejo:</strong> ganar cuota es un juego de suma cero contra los demás equipos. Los 720.000 consumidores de la Región Sur son, en cambio, mercado nuevo para quien entre primero.</div>
-                    </div></div>
-                </div>
-            </div>
-
-            <div class="sec-title">🎯 El Periodo 0 en puntos</div>
-            <div class="sec-sub">Así se descompusieron los 1.371 puntos de partida, incluida la tasa de ocupación de fábrica, que ajusta el resultado final.</div>
-            <table class="data-table">
-                <thead><tr><th>Componente</th><th style="text-align:center;">Puntos en el Periodo 0</th><th>Lectura</th></tr></thead>
-                <tbody>
-                    <tr><td>Resultados económicos</td><td style="text-align:center;">521</td><td>El bloque más grande, como marca su peso del 45%</td></tr>
-                    <tr><td>Valor de producto</td><td style="text-align:center;">186</td><td>Estancado: gama y packaging sin cambios</td></tr>
-                    <tr><td>Valor de marca</td><td style="text-align:center;">184</td><td>Sube por la promoción sostenida</td></tr>
-                    <tr><td>Cobertura de distribución</td><td style="text-align:center;">184</td><td>Más puntos de venta alcanzados que el año anterior</td></tr>
-                    <tr><td>Participación de mercado</td><td style="text-align:center;">176</td><td>20% para las cinco compañías</td></tr>
-                    <tr><td>Tasa de ocupación de fábrica</td><td style="text-align:center;">120</td><td><strong>El componente más bajo</strong> — la planta al 79,1%</td></tr>
-                    <tr><td><strong style="color:var(--primary-dark);">Valor de la Compañía</strong></td><td style="text-align:center;"><strong style="color:var(--primary-dark);">1.371</strong></td><td><strong>+5,5% desde 1.300 — por debajo del 7% esperado</strong></td></tr>
-                </tbody>
-            </table>
-
-            <div class="note dark">
-                📐 <strong>Este marcador es la salida, no la entrada.</strong> Cada factor se diagnostica en un informe distinto del cuadro de mando: <strong>Producción</strong> y <strong>Margen</strong> explican los resultados económicos; <strong>Producto</strong>, el valor de producto; <strong>Canal</strong>, la cobertura; <strong>Ventas</strong>, la participación de mercado; y el valor de marca aparece en <strong>Indicadores Clave</strong>. El detalle de los diez está en la lámina <strong>Cuadro de Mando</strong>.
-            </div>
-        </div>
-    </div>
-
-    <!-- ===================== SLIDE 12: MÉTODOS DE IMPLEMENTACIÓN ===================== -->
-    <div class="slide" id="slide12">
+    <div class="slide" id="slide15">
         <div class="slide-header">
             <h1>📚 Métodos de Implementación</h1>
             <h2>Cuatro formas de integrar el simulador en tu programa académico</h2>
@@ -1796,7 +1922,7 @@
     </div>
 
     <!-- ===================== SLIDE 13: FAQ ===================== -->
-    <div class="slide" id="slide13">
+    <div class="slide" id="slide16">
         <div class="slide-header">
             <h1>❓ Preguntas Frecuentes</h1>
             <h2>Las dudas más comunes antes de iniciar la simulación</h2>
@@ -1845,7 +1971,7 @@
     </div>
 
     <!-- ===================== SLIDE 14: CIERRE ===================== -->
-    <div class="slide" id="slide14">
+    <div class="slide" id="slide17">
         <div class="closing">
             <div class="closing-emoji">☕</div>
             <h1>¡Gracias!</h1>
@@ -1882,7 +2008,7 @@
 <!-- ===================== NAV BAR ===================== -->
 <div class="nav-bar">
     <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)" disabled>◀ Anterior</button>
-    <div class="slide-counter" id="slideCounter">1 / 14</div>
+    <div class="slide-counter" id="slideCounter">1 / 17</div>
     <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Siguiente ▶</button>
 </div>
 
@@ -1922,12 +2048,36 @@
     function toggleAccordion(header) { header.parentElement.classList.toggle('active'); }
     function toggleFactor(header) { header.parentElement.classList.toggle('active'); }
 
+    // ===== ETIQUETA DE BLOQUE EN LA CABECERA =====
+    // Marca a qué parte del recorrido pertenece cada lámina, para que se sepa
+    // en todo momento si se está leyendo el manual, leyendo los informes o
+    // decidiendo. Por índice para no repetir la etiqueta a mano en cada lámina.
+    (function injectBlockLabels() {
+        const BLOQUES = [
+            { desde: 5,  hasta: 9,  texto: '📖 Bloque 1 · El manual' },
+            { desde: 11, hasta: 12, texto: '📊 Bloque 2 · El cuadro de mando' },
+            { desde: 14, hasta: 14, texto: '🕹️ Bloque 3 · Las decisiones' }
+        ];
+        slides.forEach(function(slide, i) {
+            const n = i + 1;
+            const bloque = BLOQUES.find(function(b) { return n >= b.desde && n <= b.hasta; });
+            if (!bloque) return;
+            const header = slide.querySelector('.slide-header');
+            if (!header) return;
+            const label = document.createElement('div');
+            label.className = 'block-label';
+            label.textContent = bloque.texto;
+            header.insertBefore(label, header.firstChild);
+        });
+    })();
+
     // ===== PIE DE LÁMINA CON LOGO DEL DISTRIBUIDOR =====
-    // Se inyecta en todas las láminas salvo la portada (1) y el cierre (14),
-    // que ya llevan el logo de Simuladores de Negocios a tamaño completo.
+    // Se inyecta en todas las láminas salvo la portada, el cierre y las
+    // divisorias, que ya llevan el logo o van sobre el mismo fondo café.
     (function injectFooters() {
         slides.forEach(function(slide, i) {
             if (i === 0 || i === slides.length - 1) return;
+            if (slide.classList.contains('is-divider')) return;
             const foot = document.createElement('div');
             foot.className = 'slide-foot';
             foot.innerHTML =

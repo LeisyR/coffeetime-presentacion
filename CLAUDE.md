@@ -6,9 +6,10 @@
 > como referencia de componentes y convenciones al editar esta presentación.
 >
 > **Cambios propios de esta instancia:**
-> - **14 láminas.** La lámina 9 (Cuadro de Mando) es el núcleo formativo: método de análisis en cinco
+> - **17 láminas en tres bloques** (manual / informes / decisiones), con divisoria propia cada uno.
+>   La lámina 11 (Cuadro de Mando) es el núcleo formativo: método de análisis en cinco
 >   pasos + mapa de los ocho informes. El contador del
->   nav es dinámico (`slides.length`); solo hay que mantener a mano el texto inicial `1 / 14` y las
+>   nav es dinámico (`slides.length`); solo hay que mantener a mano el texto inicial `1 / 17` y las
 >   insignias `.slide-number` (que van desfasadas −1: la lámina 2 muestra `01`).
 >
 >   ⚠️ **Al añadir o quitar una lámina** hay que tocar cuatro cosas: el `id="slideN"` de todas las
@@ -26,7 +27,7 @@
 > - **CSS sin uso** tras retirar el módulo de análisis detallado: `.rep*`, `.ask`, `.mini*`, `.stack`,
 >   `.flow`. Se conserva por si se recupera desde `_respaldo/index-con-analisis.html`.
 > - Paleta café en `:root`; pie `.slide-foot` con el logo `assets/logo-sdn.png` inyectado por JS en
->   las láminas 2 a 13; logo también en intro, portada y cierre.
+>   las láminas de contenido (ni portada, ni cierre, ni divisorias); logo también en intro y portada.
 > - Capturas de la lámina 9 con degradación elegante (`onerror`) mientras no existan.
 > - `.slide.active` pasa a `display:flex` en columna para que el pie quede siempre abajo.
 >
