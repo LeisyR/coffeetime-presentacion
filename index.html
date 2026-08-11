@@ -434,6 +434,32 @@
         }
         .dec-cap { margin:12px auto 0; color:#6f6257; font-size:0.85em; line-height:1.55; text-align:left; }
         .dec-cap strong { color:var(--primary-dark); }
+        /* Bloque de decisión irreversible: se sale del café de los demás para que
+           no se lea como «una más de las ocho». Es la única excepción a la regla
+           de que todo se puede corregir mientras el periodo esté abierto. */
+        .dec-block.is-critical { border:2px solid #C0392B; box-shadow:0 6px 26px rgba(192,57,43,0.20); }
+        .dec-block.is-critical .dec-head { background:linear-gradient(135deg, #A02D20, #C0705F); }
+        /* Franja superior a todo el ancho. Como chip dentro del .dec-head le robaba
+           ancho al título; como flex-item con basis 100% se estiraba deforme. */
+        .dec-flag {
+            background:#8E241A; color:#fff; padding:9px 26px;
+            font-family:'Montserrat',sans-serif; font-weight:800; font-size:0.72em;
+            text-transform:uppercase; letter-spacing:1.4px;
+            display:flex; align-items:center; gap:9px;
+        }
+        .dec-warn {
+            display:flex; gap:14px; align-items:flex-start;
+            margin:20px 22px 0; padding:16px 20px;
+            background:#FDF1EF; border-left:5px solid #C0392B; border-radius:12px;
+            color:#7A3B32; line-height:1.65; font-size:0.9em;
+        }
+        .dec-warn .dw-icon { font-size:1.5em; line-height:1.1; flex-shrink:0; }
+        .dec-warn strong { color:#A02D20; }
+        .dec-warn .dw-tip {
+            display:block; margin-top:10px; padding-top:10px;
+            border-top:1px dashed #E3BDB6; color:#6b5a55; font-size:0.94em;
+        }
+        .dec-warn .dw-tip strong { color:var(--primary-dark); }
         /* Rejilla de dos columnas: las capturas de decisiones son estrechas (400-470 px),
            apiladas a una columna la lámina se hacía interminable. */
         .dec-grid { display:grid; grid-template-columns:1fr 1fr; gap:26px; margin-top:26px; }
@@ -1600,8 +1626,8 @@
             <h2>🕹️ Las decisiones del simulador</h2>
             <p>
                 El momento de actuar. Ocho pantallas donde el equipo traduce el diagnóstico en once decisiones
-                concretas. Nada cuenta hasta pulsar <strong>Grabar</strong>, y todo se puede corregir mientras el
-                periodo siga abierto.
+                concretas. Nada cuenta hasta pulsar <strong>Grabar</strong>, y casi todo se puede corregir mientras el
+                periodo siga abierto — <strong>salvo las decisiones estratégicas, que no tienen marcha atrás</strong>.
             </p>
             <div class="dv-items">
                 <span>📈 Previsión de ventas</span>
@@ -1715,18 +1741,28 @@
                 </div>
             </div>
 
-            <div class="dec-block">
+            <div class="dec-block is-critical">
+                <div class="dec-flag">⚠️ Sin marcha atrás · una vez grabada, no se puede modificar</div>
                 <div class="dec-head">
                     <div class="dec-num">7</div>
                     <div>
                         <h3>Decisiones estratégicas</h3>
-                        <p>Ampliación de la capacidad de fabricación — y, desde el periodo 2, la entrada a la Región Sur. Son las decisiones <strong>irreversibles</strong>.</p>
+                        <p>Ampliación de la capacidad de fabricación — y, desde el periodo 2, la entrada a la Región Sur.</p>
                     </div>
+                </div>
+                <div class="dec-warn">
+                    <span class="dw-icon">🔒</span>
+                    <span>
+                        <strong>Estas dos son la excepción a todo lo demás.</strong> Una vez tomadas y <strong>grabadas</strong>,
+                        <strong>no se pueden modificar</strong> — ni aunque el periodo siga abierto, ni en periodos posteriores.
+                        El resto de decisiones se corrigen cuantas veces haga falta; estas no.
+                        <span class="dw-tip">Antes de grabar: revisen el informe de <strong>Producción</strong> para la capacidad, y el de <strong>Mercado</strong> para el Sur. Y decídanlas <em>antes</em> que las demás, porque condicionan precio, promoción y previsión.</span>
+                    </span>
                 </div>
                 <div class="dec-shot">
                     <img src="assets/dec-07-capacidad.png" alt="Pantalla de ampliación de capacidad de fabricación" loading="lazy"
                          onclick="openLightbox('assets/dec-07-capacidad.png','Decisiones estratégicas · ampliación de capacidad')">
-                    <div class="dec-cap">Se puede ampliar en 20.000, 40.000 o 60.000 unidades. <strong>Tarda un periodo completo en estar disponible</strong>, así que hay que planificarla con antelación — y no se puede modificar.</div>
+                    <div class="dec-cap">Se puede ampliar en 20.000, 40.000 o 60.000 unidades. <strong>Tarda un periodo completo en estar disponible</strong>, así que hay que planificarla con antelación. La propia pantalla lo advierte: <em>«una vez hayas tomado esta decisión no podrás modificarla. Medítala bien antes de ejecutarla»</em>.</div>
                 </div>
             </div>
 
@@ -1747,7 +1783,9 @@
             </div>
 
             <div class="note">
-                🔄 <strong>Mientras el periodo esté abierto</strong>, las decisiones se pueden modificar tantas veces como el equipo quiera — siempre volviendo a grabar. Cuando el profesor cierra el periodo y ejecuta la simulación, quedan en firme.
+                🔄 <strong>La regla general:</strong> mientras el periodo esté abierto, las decisiones se pueden modificar tantas veces como el equipo quiera — siempre volviendo a grabar. Cuando el profesor cierra el periodo y ejecuta la simulación, quedan en firme.
+                <br><br>
+                🔒 <strong>La excepción, la número 7:</strong> la <strong>ampliación de capacidad</strong> y la <strong>entrada a la Región Sur</strong> quedan en firme <strong>en cuanto se graban</strong>, sin esperar al cierre del periodo. No hay forma de deshacerlas.
             </div>
         </div>
     </div>
